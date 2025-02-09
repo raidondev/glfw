@@ -15,13 +15,15 @@ project "GLFW"
         "src/input.c",
         "src/monitor.c",
         "src/vulkan.c",
-        "src/window.c"
+        "src/window.c",
+        "src/platform.c",
+        "src/null_init.c"
     }
     
 	filter "system:windows"
-        buildoptions { "-std=c11", "-lgdi32" }
+        buildoptions { "/utf-8" }
         systemversion "latest"
-        staticruntime "On"
+        staticruntime "Off"
         
         files
         {
@@ -33,7 +35,8 @@ project "GLFW"
             "src/win32_window.c",
             "src/wgl_context.c",
             "src/egl_context.c",
-            "src/osmesa_context.c"
+            "src/osmesa_context.c",
+            "src/win32_module.c"
         }
 
 		defines 
@@ -42,5 +45,18 @@ project "GLFW"
             "_CRT_SECURE_NO_WARNINGS"
 		}
 
-    filter { "system:windows", "configurations:Release" }
-        buildoptions { "/MT", "/utf-8" }
+        filter "configurations:Debug or configurations:Release"
+            files 
+            {
+                "src/null_init.c",
+                "src/null_monitor.c",
+                "src/null_window.c",
+                "src/null_joystick.c",
+                "src/null_platform.h"
+            }
+
+    filter "configurations:Debug"
+        runtime "Debug"
+
+    filter "configurations:Release"
+        runtime "Release"
