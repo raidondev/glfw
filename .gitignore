@@ -102,3 +102,9 @@ tests/triangle-vulkan
 tests/window
 tests/windows
 
+##################################
+#    NYX ENGINE MODIFICATIONS    #
+##################################
+# Directories
+Binaries/
+Intermediate/
