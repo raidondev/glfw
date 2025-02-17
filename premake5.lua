@@ -23,7 +23,7 @@ project "GLFW"
 	filter "system:windows"
         buildoptions { "/utf-8" }
         systemversion "latest"
-        staticruntime "Off"
+        staticruntime "on"
         
         files
         {
