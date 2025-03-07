@@ -2,11 +2,11 @@ project "GLFW"
     kind "StaticLib"
     language "C"
     
-	targetdir ("Binaries/" .. outputdir .. "/%{prj.name}")
+    targetdir ("Binaries/" .. outputdir .. "/%{prj.name}")
     objdir ("Intermediate/" .. outputdir .. "/%{prj.name}")
-	
+    
     files
-	{
+    {
         "include/GLFW/glfw3.h",
         "include/GLFW/glfw3native.h",
         "src/glfw_config.h",
@@ -20,7 +20,7 @@ project "GLFW"
         "src/null_init.c"
     }
     
-	filter "system:windows"
+    filter "system:windows"
         buildoptions { "/utf-8" }
         systemversion "latest"
         staticruntime "on"
@@ -39,11 +39,11 @@ project "GLFW"
             "src/win32_module.c"
         }
 
-		defines 
-		{ 
+        defines 
+        { 
             "_GLFW_WIN32",
             "_CRT_SECURE_NO_WARNINGS"
-		}
+        }
 
         filter "configurations:Debug or configurations:Release"
             files 
